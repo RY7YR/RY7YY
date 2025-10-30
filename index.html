@@ -30,33 +30,16 @@
     }
 
     /* ✅ مظهر فاتح */
-    @media (prefers-color-scheme: light) {
-      :root {
-        --bg:#ffffff;
-        --fg:#0d1117;
-        --muted:#374151;
-        --soft:rgba(0,0,0,.04);
-        --card:#f9fafb;
-        --border:#e5e7eb;
-        --ring:rgba(0,0,0,.08);
-        --link:#2563eb;
-        --neon:#00aaff;
-      }
-    }
-
-    /* ✅ مظهر داكن */
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg:#0d1117;
-        --fg:#ffffff;
-        --muted:#94a3b8;
-        --soft:rgba(255,255,255,.06);
-        --card:#161b22;
-        --border:#30363d;
-        --ring:rgba(255,255,255,.10);
-        --link:#58a6ff;
-        --neon:#00f5ff;
-      }
+    :root.light {
+      --bg:#ffffff;
+      --fg:#0d1117;
+      --muted:#374151;
+      --soft:rgba(0,0,0,.04);
+      --card:#f9fafb;
+      --border:#e5e7eb;
+      --ring:rgba(0,0,0,.08);
+      --link:#2563eb;
+      --neon:#00aaff;
     }
 
     *,*::before,*::after{box-sizing:border-box}
@@ -67,6 +50,7 @@
       -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
       background:linear-gradient(-45deg,var(--bg),var(--card),var(--bg),#1e293b);
       background-size:400% 400%;animation:bg-animate 15s ease infinite;
+      scroll-behavior:smooth;
     }
     @keyframes bg-animate{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 
@@ -77,12 +61,7 @@
 
     .hero{display:flex;flex-direction:column;align-items:center}
     .avatar{width:176px;height:176px;border-radius:50%;object-fit:cover;background:var(--soft);border:1px solid var(--border)}
-.name{
-  margin:14px 0 6px;
-  font-size:clamp(26px,4.4vw,36px);
-  font-weight:800;
-  letter-spacing:.2px;
-  color:#a89e32;}
+    .name{margin:14px 0 6px;font-size:clamp(26px,4.4vw,36px);font-weight:800;letter-spacing:.2px;color:#a89e32;}
     .role{margin:0 0 10px;color:var(--muted);font-weight:700;font-size:clamp(15px,2.4vw,18px)}
     .intro{margin:0 auto 16px;padding:12px 14px;background:var(--soft);border:1px solid var(--border);border-radius:12px;font-weight:600;max-width:60ch}
 
@@ -103,15 +82,7 @@
     }
     .btn:hover{transform:translateY(-2px);box-shadow:0 0 18px var(--neon),0 0 36px var(--neon)}
 
-    .section-label{margin:18px 0 12px;font-size:16px;color:var(--muted);font-weight:800}
-
-    .section-label {
-      margin: 18px 0 8px;
-      font-size: 14px;
-      color: var(--muted);
-      font-weight: 800;
-      text-align: center;
-    }
+    .section-label{margin:18px 0 8px;font-size:14px;color:var(--muted);font-weight:800;text-align:center;}
 
     .skills {
       display: grid;
@@ -139,15 +110,89 @@
     .chip.apis    { background: #14b8a6; color: #fff; }
     .chip.linux   { background: #f59e0b; color: #000; }
 
+    /* ✅ قسم المشاريع */
+    .projects {
+      display: grid;
+      gap: 18px;
+      justify-content: center;
+      margin: 26px 0;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+    .project {
+      background: var(--soft);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 12px;
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .project:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 15px var(--neon);
+    }
+    .project img {
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+    .project p {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--fg);
+      margin: 0;
+    }
+
+    /* ✅ زر الوضع الليلي / النهاري */
+    #themeToggle {
+      position: fixed;
+      top: 14px;
+      left: 14px;
+      background: var(--card);
+      color: var(--neon);
+      border: 2px solid var(--neon);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0 0 12px var(--neon);
+      z-index: 99;
+      transition: background .3s, transform .3s;
+    }
+    #themeToggle:hover { transform: scale(1.1); }
+
+    /* ✅ زر الرجوع لأعلى الصفحة */
+    #toTop {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      background: var(--neon);
+      color: #000;
+      border: none;
+      border-radius: 50%;
+      width: 46px;
+      height: 46px;
+      display: none;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: 0 0 18px var(--neon);
+      transition: transform .3s;
+      z-index: 90;
+    }
+    #toTop:hover { transform: translateY(-4px); }
+
     footer{padding:26px 0 34px;color:var(--muted);text-align:center;font-family:'Thmanyah sans 1.2',sans-serif}
   </style>
 </head>
 <body>
+  <!-- ✅ زر تبديل الوضع -->
+  <button id="themeToggle"><i class="fas fa-moon"></i></button>
+
   <main>
     <div class="wrap">
       <section class="card" aria-label="𝙳.𝚉𝙷𝚁𝙰𝙽𝙸">
         <div class="hero">
-          <img class="avatar" src="IMG_2957.jpeg" alt="𝙳.𝚉𝙷𝚁𝙰𝙽𝙰𝙸" />
+          <img class="avatar" src="IMG_2957.jpeg" alt="𝙳.𝚉𝙷𝚁𝙰𝙽𝙸" />
           <h1 class="name">𝙳.𝚉𝙷𝚁𝙰𝙽𝙸</h1>
           <p class="role">مطور تطبيقات ومواقع إلكترونية</p>
           <p class="intro">كل ما يخصني من روابط وتواصل مجمع هنا، حيّاك يا عسل 👑</p>
@@ -157,7 +202,8 @@
             <a href="https://x.com/ry7yy" style="background:#000;"><i class="fab fa-x-twitter" style="color:#fff;"></i></a>
             <a href="https://t.me/RY7DY" style="background:#229ED9;"><i class="fab fa-telegram" style="color:#fff;"></i></a>
             <a href="https://snapchat.com/add/dy.q" style="background:#FFFC00;"><i class="fab fa-snapchat-ghost" style="color:#000;"></i></a>
-            <a href="https://instagram.com/RY3YY" style="background:linear-gradient(135deg,#F58529,#DD2A7B,#8134AF,#515BD4);"><i class="fab fa-instagram" style="color:#fff;"></i></a>          </nav>
+            <a href="https://instagram.com/RY3YY" style="background:linear-gradient(135deg,#F58529,#DD2A7B,#8134AF,#515BD4);"><i class="fab fa-instagram" style="color:#fff;"></i></a>
+          </nav>
 
           <div class="divider"></div>
 
@@ -175,11 +221,47 @@
             <span class="chip apis"><i class="fas fa-cloud"></i> ‎APIs</span>
             <span class="chip python"><i class="fab fa-python"></i> ‎Python</span>
           </div>
+
+          <!-- ✅ قسم المشاريع -->
+          <p class="section-label">مشاريعي</p>
+          <div class="projects">
+            <div class="project">
+              <img src="project1.jpg" alt="مشروع 1" />
+              <p>  تطبيق Razah Chat</p>
+            </div>
+            <div class="project">
+              <img src="Razah.png" alt="مشروع 2" />
+              <p>تطبيق AI Razah</p>
+            </div>
+            <div class="project">
+              <img src="AI.png"
+            </div>
+          </div>
         </div>
       </section>
 
       <footer><div>© 𝙳.𝚉𝙷𝚁𝙰𝙽𝙸 © 2025</div></footer>
     </div>
   </main>
+
+  <!-- ✅ زر الرجوع لأعلى الصفحة -->
+  <button id="toTop">↑</button>
+
+  <script>
+    // ✅ زر الرجوع لأعلى الصفحة
+    const btn = document.getElementById("toTop");
+    window.onscroll = () => btn.style.display = window.scrollY > 200 ? 'block' : 'none';
+    btn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // ✅ تبديل الوضع الليلي / النهاري
+    const toggle = document.getElementById("themeToggle");
+    const root = document.documentElement;
+    let lightMode = false;
+    toggle.onclick = () => {
+      lightMode = !lightMode;
+      root.classList.toggle("light", lightMode);
+      toggle.innerHTML = lightMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    };
+  </script>
 </body>
 </html>
