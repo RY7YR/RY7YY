@@ -149,6 +149,19 @@
       margin: 0;
     }
 
+    /* ✅ قسم الإحصائيات */
+    #visits {
+      margin-top: 22px;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--neon);
+      background: var(--soft);
+      border-radius: 10px;
+      padding: 10px 14px;
+      display: inline-block;
+      box-shadow: 0 0 10px var(--neon), 0 0 20px var(--neon);
+    }
+
     /* ✅ زر الوضع الليلي / النهاري */
     #themeToggle {
       position: fixed;
@@ -249,6 +262,10 @@
               <p>AI Razah</p>
             </div>
           </div>
+
+          <!-- ✅ قسم إحصائيات الزوار -->
+          <div id="visits">👁️ جاري تحميل عدد الزوار...</div>
+
         </div>
       </section>
 
@@ -274,6 +291,16 @@
       root.classList.toggle("light", lightMode);
       toggle.innerHTML = lightMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
     };
+
+    // ✅ إحصائيات الزوار المباشرة (CountAPI)
+    fetch("https://api.countapi.xyz/hit/devry7yy.org/visits")
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("visits").innerText = `👁️ عدد الزيارات: ${data.value}`;
+      })
+      .catch(() => {
+        document.getElementById("visits").innerText = "⚠️ تعذّر تحميل عدد الزوار.";
+      });
   </script>
 </body>
 </html>
