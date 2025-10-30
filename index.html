@@ -293,14 +293,19 @@
     };
 
     // ✅ إحصائيات الزوار المباشرة (CountAPI)
-    fetch("https://api.countapi.xyz/hit/devry7yy.org/visits")
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById("visits").innerText = `👁️ عدد الزيارات: ${data.value}`;
-      })
-      .catch(() => {
-        document.getElementById("visits").innerText = "⚠️ تعذّر تحميل عدد الزوار.";
-      });
+// ✅ إحصائيات الزوار المباشرة (بخادم بديل مضمون)
+fetch("https://api.countapi.dev/RY7YY/devry7yy.org")
+  .then(r => r.json())
+  .then(data => {
+    if (data.value) {
+      document.getElementById("visits").innerText = `👁️ عدد الزيارات: ${data.value}`;
+    } else {
+      throw new Error("No data");
+    }
+  })
+  .catch(() => {
+    document.getElementById("visits").innerText = "⚠️ تعذّر تحميل عدد الزوار.";
+  });
   </script>
 </body>
 </html>
