@@ -263,8 +263,22 @@
             </div>
           </div>
 
-          <!-- ✅ قسم إحصائيات الزوار -->
-          <div id="visits">👁️ جاري تحميل عدد الزوار...</div>
+          <!-- ✅ قسم إحصائيات الزوار عبر hits.sh (يعمل فورًا على GitHub Pages) -->
+<div id="visits" style="
+  margin-top:22px;
+  font-weight:700;
+  font-size:15px;
+  color:#00f5ff;
+  background:rgba(255,255,255,0.06);
+  border-radius:10px;
+  padding:10px 14px;
+  display:inline-block;
+  box-shadow:0 0 10px #00f5ff,0 0 20px #00f5ff;">
+  👁️ عدد الزيارات:
+  <img src="https://hits.sh/devry7yy.org.svg?style=flat-square&label=&color=00f5ff&labelColor=0d1117" 
+       alt="عدد الزيارات" 
+       style="vertical-align:middle; height:20px;">
+</div>
 
         </div>
       </section>
@@ -291,21 +305,6 @@
       root.classList.toggle("light", lightMode);
       toggle.innerHTML = lightMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
     };
-
-    // ✅ إحصائيات الزوار المباشرة (CountAPI)
-// ✅ إحصائيات الزوار المباشرة (بخادم بديل مضمون)
-fetch("https://api.countapi.dev/RY7YY/devry7yy.org")
-  .then(r => r.json())
-  .then(data => {
-    if (data.value) {
-      document.getElementById("visits").innerText = `👁️ عدد الزيارات: ${data.value}`;
-    } else {
-      throw new Error("No data");
-    }
-  })
-  .catch(() => {
-    document.getElementById("visits").innerText = "⚠️ تعذّر تحميل عدد الزوار.";
-  });
   </script>
 </body>
 </html>
