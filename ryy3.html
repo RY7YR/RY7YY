@@ -23,6 +23,7 @@
     --twitter: #1DA1F2;
     --telegram: #0088cc;
     --snapchat: #FFFC00;
+    --store: #8000FF;
   }
 
   * {
@@ -76,6 +77,18 @@
     transition: all .25s ease;
   }
   .close-btn:hover { background:rgba(255,77,77,.15); transform: scale(1.1); }
+
+  .logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto 14px;
+    display: block;
+    object-fit: cover;
+    box-shadow: 0 0 14px rgba(255,255,255,.1), 0 4px 14px rgba(0,0,0,.4);
+    border: 2px solid rgba(255,255,255,.08);
+    animation: fadeIn 1s ease;
+  }
 
   .title {
     font-size: 26px;
@@ -137,6 +150,9 @@
     background: var(--snapchat);
     color: #000;
   }
+  .btn-store {
+    background: var(--store);
+  }
 
   .footer {
     margin-top: 14px;
@@ -153,6 +169,9 @@
 
     <!-- زر الإغلاق -->
     <button class="close-btn" onclick="closePage()">✕</button>
+
+    <!-- الأيقونة -->
+    <img class="logo" src="https://devry7yy.org/ssa.png" alt="Logo"/>
 
     <!-- العنوان -->
     <h1 class="title">𝙳.𝚉𝙷𝚁𝙰𝙽𝙸 </h1>
@@ -195,6 +214,15 @@
         </svg>
         <span>Snapchat</span>
       </a>
+
+      <!-- موقعنا -->
+      <a class="btn btn-store" href="https://devry7yy.org" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C6.486 2 2 6.486 2 12c0 5.512 4.486 10 10 10s10-4.488 10-10c0-5.514-4.486-10-10-10zm0 2c4.336 0 7.898 3.307 7.994 7.637C19.23 11.447 15.851 10 12 10c-3.85 0-7.23 1.447-7.994 1.637C4.102 7.307 7.664 4 12 4zm0 16c-4.336 0-7.898-3.307-7.994-7.637C4.77 12.553 8.149 14 12 14c3.85 0 7.23-1.447 7.994-1.637C19.898 16.693 16.336 20 12 20z"/>
+        </svg>
+        <span>موقعنا</span>
+      </a>
+
     </div>
 
     <!-- الفوتر -->
