@@ -15,7 +15,7 @@
 
   :root {
     --bg: #0f1115;
-    --card: #151922;
+    --card: #171b23;
     --text: #eaecef;
     --muted: #9aa3b2;
     --accent: #ffd400;
@@ -44,7 +44,7 @@
   }
 
   .card {
-    background: linear-gradient(160deg, rgba(255,255,255,.03), rgba(255,255,255,.01)),
+    background: linear-gradient(160deg, rgba(255,255,255,.04), rgba(255,255,255,.01)),
                 var(--card);
     border: 1px solid rgba(255,255,255,.08);
     border-radius: 22px;
@@ -52,8 +52,7 @@
     box-shadow: 0 12px 35px rgba(0,0,0,.35), 0 0 0 5px rgba(255,212,0,.1);
     backdrop-filter: blur(12px);
     width: 92%;
-    max-width: 460px;
-    position: relative;
+    max-width: 480px;
     text-align: center;
     animation: fadeIn 0.6s ease;
   }
@@ -79,10 +78,10 @@
   .close-btn:hover { background:rgba(255,77,77,.15); transform: scale(1.1); }
 
   .logo {
-    width: 100px;
-    height: 100px;
+    width: 95px;
+    height: 95px;
     border-radius: 50%;
-    margin: 0 auto 14px;
+    margin: 0 auto 16px;
     display: block;
     object-fit: cover;
     box-shadow: 0 0 14px rgba(255,255,255,.1), 0 4px 14px rgba(0,0,0,.4);
@@ -91,9 +90,19 @@
   }
 
   .title {
-    font-size: 26px;
+    font-size: 27px;
     color: var(--accent);
-    margin-bottom: 6px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 6px rgba(255,212,0,.4), 0 2px 4px rgba(0,0,0,.4);
+    letter-spacing: 1.2px;
+    font-weight: 700;
+  }
+
+  .title svg {
+    width: 26px; height: 26px;
+    vertical-align: middle;
+    margin-left: 8px;
+    fill: var(--accent);
   }
 
   .subtitle {
@@ -101,7 +110,7 @@
     font-size: 15px;
     line-height: 1.6;
     margin: 0 auto 16px;
-    width: 90%;
+    width: 92%;
   }
 
   .message-box {
@@ -115,6 +124,14 @@
     line-height:1.6;
     box-shadow: 0 4px 14px rgba(0,0,0,.3);
     font-size: 14px;
+  }
+
+  .message-box svg {
+    width: 22px;
+    height: 22px;
+    fill: var(--accent);
+    vertical-align: middle;
+    margin-left: 6px;
   }
 
   .social {
@@ -136,23 +153,14 @@
     transition: all .2s ease;
     box-shadow: 0 4px 10px rgba(0,0,0,.3);
   }
-  .btn svg { width: 22px; height: 22px; }
+  .btn svg { width: 22px; height: 22px; fill: #fff; }
 
   .btn:hover { transform: translateY(-2px); }
 
-  .btn-twitter {
-    background: var(--twitter);
-  }
-  .btn-telegram {
-    background: var(--telegram);
-  }
-  .btn-snapchat {
-    background: var(--snapchat);
-    color: #000;
-  }
-  .btn-store {
-    background: var(--store);
-  }
+  .btn-twitter { background: var(--twitter); }
+  .btn-telegram { background: var(--telegram); }
+  .btn-snapchat { background: var(--snapchat); color: #000; }
+  .btn-store { background: var(--store); }
 
   .footer {
     margin-top: 14px;
@@ -174,52 +182,47 @@
     <img class="logo" src="https://devry7yy.org/ssa.png" alt="Logo"/>
 
     <!-- العنوان -->
-    <h1 class="title">𝙳.𝚉𝙷𝚁𝙰𝙽𝙸 </h1>
+    <h1 class="title">
+      <svg viewBox="0 0 24 24"><path d="M12 0L15 8H9L12 0ZM12 24L9 16H15L12 24ZM0 12L8 15V9L0 12ZM24 12L16 9V15L24 12Z"/></svg>
+      𝙳.𝚉𝙷𝚁𝙰𝙽𝙸 
+    </h1>
 
     <!-- الوصف القصير -->
     <p class="subtitle">
-      ‎تم فتح مميزات التطبيق ✨  
-      <br>بفخامة وإبداع من { 𝙳.𝚉𝙷𝚁𝙰𝙽𝙸  } 😎
+      تم فتح مميزات التطبيق بنجاح  
+      <br>بتطوير واحترافية عالية من فريق RY7YY
     </p>
 
     <!-- الرسالة -->
     <div class="message-box">
-      كل روابط التواصل والخدمات الخاصة مجمّعة هنا،  
-      <br>حيّاك الله يا مبدع 👑
+      <svg viewBox="0 0 24 24"><path d="M2 3h20v2H2V3zm0 7h14v2H2v-2zm0 7h20v2H2v-2z"/></svg>
+      جميع روابط التواصل والخدمات الرسمية متوفرة بالأسفل.
     </div>
 
     <!-- روابط التواصل -->
     <div class="social">
 
       <!-- Twitter -->
-      <a class="btn btn-twitter" href="https://twitter.com/RY7YY" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M18.244 2.25h3.308l-7.227 8.26 8.487 11.24H16.17l-5.33-6.977-6.095 6.977H1.435l7.73-8.85L1 2.25h7.08l4.82 6.41 5.344-6.41zm-1.158 18.5h1.833L7.01 4.126H5.05l12.036 16.624z"/>
-        </svg>
+      <a class="btn btn-twitter" href="https://twitter.com/RY7YY" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0012 7.03v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5A4.5 4.5 0 0023 3z"/></svg>
         <span>تويتر</span>
       </a>
 
       <!-- Telegram -->
-      <a class="btn btn-telegram" href="https://t.me/RY7R7" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M9.036 15.39 8.88 19.4c.36 0 .518-.155.705-.34l1.694-1.642 3.51 2.583c.645.356 1.108.169 1.285-.597l2.326-10.98c.237-1.101-.42-1.532-1.271-1.26L3.9 10.06c-1.08.338-1.063.99-.183 1.252l3.845 1.186 8.93-5.622c.42-.27.8-.12.486.15l-7.942 6.364z"/>
-        </svg>
+      <a class="btn btn-telegram" href="https://t.me/RY7R7" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24"><path d="M9.036 15.39 8.88 19.4c.36 0 .518-.155.705-.34l1.694-1.642 3.51 2.583c.645.356 1.108.169 1.285-.597l2.326-10.98c.237-1.101-.42-1.532-1.271-1.26L3.9 10.06c-1.08.338-1.063.99-.183 1.252l3.845 1.186 8.93-5.622c.42-.27.8-.12.486.15l-7.942 6.364z"/></svg>
         <span>تيليقرام</span>
       </a>
 
       <!-- Snapchat -->
-      <a class="btn btn-snapchat" href="https://snapchat.com/t/qSusp72R" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2c3.9 0 6.7 2.873 6.7 6.68 0 1.874-.676 3.017-.676 3.017s.602.51 1.58.845c.367.126.52.564.326.898-.33.57-1.236.93-2.23 1.02-.14.23-.317.5-.53.79-.94 1.28-2.17 2.19-3.7 2.19-.46 0-.93-.06-1.44-.2-.5.14-.96.2-1.42.2-1.53 0-2.77-.92-3.7-2.2-.21-.29-.39-.56-.53-.79-.99-.09-1.9-.45-2.23-1.02-.19-.33-.04-.77.33-.9.98-.33 1.58-.84 1.58-.84S5.98 10.56 5.98 8.68C5.98 4.87 8.79 2 12 2z"/>
-        </svg>
+      <a class="btn btn-snapchat" href="https://snapchat.com/t/qSusp72R" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24"><path d="M12 2c3.9 0 6.7 2.873 6.7 6.68 0 1.874-.676 3.017-.676 3.017s.602.51 1.58.845c.367.126.52.564.326.898-.33.57-1.236.93-2.23 1.02-.14.23-.317.5-.53.79-.94 1.28-2.17 2.19-3.7 2.19-.46 0-.93-.06-1.44-.2-.5.14-.96.2-1.42.2-1.53 0-2.77-.92-3.7-2.2-.21-.29-.39-.56-.53-.79-.99-.09-1.9-.45-2.23-1.02-.19-.33-.04-.77.33-.9.98-.33 1.58-.84 1.58-.84S5.98 10.56 5.98 8.68C5.98 4.87 8.79 2 12 2z"/></svg>
         <span>سناب شات</span>
       </a>
 
       <!-- موقعنا -->
-      <a class="btn btn-store" href="https://devry7yy.org" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2C6.486 2 2 6.486 2 12c0 5.512 4.486 10 10 10s10-4.488 10-10c0-5.514-4.486-10-10-10zm0 2c4.336 0 7.898 3.307 7.994 7.637C19.23 11.447 15.851 10 12 10c-3.85 0-7.23 1.447-7.994 1.637C4.102 7.307 7.664 4 12 4zm0 16c-4.336 0-7.898-3.307-7.994-7.637C4.77 12.553 8.149 14 12 14c3.85 0 7.23-1.447 7.994-1.637C19.898 16.693 16.336 20 12 20z"/>
-        </svg>
+      <a class="btn btn-store" href="https://devry7yy.org" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.486 2 2 6.486 2 12c0 5.512 4.486 10 10 10s10-4.488 10-10c0-5.514-4.486-10-10-10zM4 12c0-4.411 3.589-8 8-8 1.657 0 3.183.507 4.456 1.364L5.364 16.456A7.963 7.963 0 014 12zm8 8c-1.657 0-3.183-.507-4.456-1.364L18.636 7.544A7.963 7.963 0 0120 12c0 4.411-3.589 8-8 8z"/></svg>
         <span>موقعنا</span>
       </a>
 
@@ -228,14 +231,13 @@
     <!-- الفوتر -->
     <div class="footer">
       © <span id="y"></span> RY7YY — جميع الحقوق محفوظة.<br>
-      تصميم وإبداع 𝙳.𝚉𝙷𝚁𝙰𝙽𝙸 
+      تصميم وتطوير RY7YY Dev Team
     </div>
 
   </div>
 
 <script>
   document.getElementById('y').textContent = new Date().getFullYear();
-
   function closePage() {
     window.location.href = "ry7://close";
   }
