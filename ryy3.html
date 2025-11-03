@@ -14,8 +14,8 @@
   }
 
   :root {
-    --bg: #0f1115;
-    --card: #171b23;
+    --bg: transparent;
+    --card: #14161a;
     --text: #eaecef;
     --muted: #9aa3b2;
     --accent: #ffd400;
@@ -34,9 +34,9 @@
   }
 
   html, body {
-    margin: 0; padding: 0;
+    margin: 0;
+    padding: 0;
     background: var(--bg);
-    color: var(--text);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -44,17 +44,17 @@
   }
 
   .card {
-    background: linear-gradient(160deg, rgba(255,255,255,.04), rgba(255,255,255,.01)),
-                var(--card);
-    border: 1px solid rgba(255,255,255,.08);
+    position: relative;
+    background: var(--card);
+    border: 2px solid var(--accent);
     border-radius: 22px;
-    padding: 26px 20px 28px;
-    box-shadow: 0 12px 35px rgba(0,0,0,.35), 0 0 0 5px rgba(255,212,0,.1);
-    backdrop-filter: blur(12px);
+    padding: 32px 20px 28px;
+    box-shadow: 0 8px 32px rgba(0,0,0,.4);
+    backdrop-filter: blur(10px);
     width: 92%;
-    max-width: 480px;
+    max-width: 460px;
     text-align: center;
-    animation: fadeIn 0.6s ease;
+    animation: fadeIn 0.7s ease;
   }
 
   @keyframes fadeIn {
@@ -62,61 +62,76 @@
     to { opacity: 1; transform: scale(1); }
   }
 
-  .close-btn {
-    position:absolute;
-    top:10px; left:10px;
-    background: rgba(0,0,0,.4);
-    color: var(--danger);
-    border:none;
-    border-radius: 50%;
-    width:34px; height:34px;
-    display:flex; align-items:center; justify-content:center;
-    font-size:17px;
-    cursor:pointer;
-    transition: all .25s ease;
-  }
-  .close-btn:hover { background:rgba(255,77,77,.15); transform: scale(1.1); }
-
   .logo {
     width: 95px;
     height: 95px;
     border-radius: 50%;
-    margin: 0 auto 16px;
+    margin: 0 auto 14px;
     display: block;
     object-fit: cover;
-    box-shadow: 0 0 14px rgba(255,255,255,.1), 0 4px 14px rgba(0,0,0,.4);
-    border: 2px solid rgba(255,255,255,.08);
-    animation: fadeIn 1s ease;
+    box-shadow: 0 6px 18px rgba(0,0,0,.5);
+    border: 2px solid rgba(255,212,0,.4);
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 10px;
   }
 
   .title {
     font-size: 27px;
     color: var(--accent);
-    margin-bottom: 10px;
-    text-shadow: 0 0 6px rgba(255,212,0,.4), 0 2px 4px rgba(0,0,0,.4);
+    text-shadow: 0 2px 8px rgba(0,0,0,.4);
     letter-spacing: 1.3px;
     font-weight: 700;
+  }
+
+  .close-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform .2s ease;
+  }
+
+  .close-btn svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--accent);
+    opacity: 0.8;
+  }
+
+  .close-btn:hover {
+    transform: scale(1.15);
+    opacity: 1;
   }
 
   .subtitle {
     color: var(--muted);
     font-size: 15px;
-    line-height: 1.6;
-    margin: 0 auto 18px;
+    line-height: 1.7;
+    margin: 0 auto 16px;
     width: 92%;
   }
 
   .message-box {
-    margin: 14px auto 20px;
-    padding: 14px 14px;
-    background: rgba(255,255,255,.05);
-    border: 1px solid rgba(255,255,255,.08);
-    border-radius: 14px;
+    margin: 14px auto 22px;
+    padding: 16px;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: 16px;
     color: var(--text);
     font-weight: 600;
-    line-height:1.6;
-    box-shadow: 0 4px 14px rgba(0,0,0,.3);
-    font-size: 14px;
+    line-height: 1.6;
+    box-shadow: inset 0 0 10px rgba(0,0,0,.15), 0 4px 18px rgba(0,0,0,.25);
+    font-size: 14.5px;
+    max-width: 400px;
+    margin-top: 10px;
   }
 
   .message-box svg {
@@ -136,7 +151,10 @@
   }
 
   .btn {
-    display: flex; align-items: center; justify-content: center; gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
     padding: 11px 14px;
     border-radius: 12px;
     text-decoration: none;
@@ -146,7 +164,8 @@
     transition: all .2s ease;
     box-shadow: 0 4px 10px rgba(0,0,0,.3);
   }
-  .btn svg { width: 26px; height: 26px; }
+
+  .btn svg { width: 28px; height: 28px; }
 
   .btn:hover { transform: translateY(-2px); }
 
@@ -156,11 +175,12 @@
   .btn-store { background: var(--store); color: #fff; }
 
   .footer {
-    margin-top: 14px;
+    margin-top: 20px;
     color: var(--muted);
     font-size: 12px;
     border-top: 1px dashed rgba(255,255,255,.08);
     padding-top: 8px;
+    line-height: 1.8;
   }
 </style>
 </head>
@@ -168,23 +188,22 @@
 <body>
   <div class="card">
 
-    <button class="close-btn" onclick="closePage()">✕</button>
+    <div class="header">
+      <h1 class="title">𝙳.𝚉𝙷𝚁𝙰𝙽𝙸</h1>
+      <button class="close-btn" onclick="closePage()">
+        <svg viewBox="0 0 24 24"><path d="M18.3 5.71a1 1 0 0 0-1.41 0L12 10.59 7.11 5.7a1 1 0 0 0-1.41 1.41L10.59 12l-4.9 4.89a1 1 0 1 0 1.41 1.42L12 13.41l4.89 4.9a1 1 0 0 0 1.42-1.42L13.41 12l4.89-4.89a1 1 0 0 0 0-1.4z"/></svg>
+      </button>
+    </div>
 
     <img class="logo" src="https://devry7yy.org/ssa.png" alt="Logo"/>
 
-    <h1 class="title">𝙳.𝚉𝙷𝚁𝙰𝙽𝙸</h1>
-
     <p class="subtitle">
-      <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;vertical-align:middle;margin-left:6px;">
-      </svg>
-تم فتح مميزات التطبيق بواسطة
-      <br>{𝙳.𝚉𝙷𝚁𝙰𝙽𝙸}
+      تم فتح مميزات التطبيق بواسطة <br><strong style="color:var(--accent);">{ 𝙳.𝚉𝙷𝚁𝙰𝙽𝙸 }</strong>
     </p>
 
     <div class="message-box">
       <svg viewBox="0 0 24 24"><path d="M2 3h20v2H2V3zm0 7h14v2H2v-2zm0 7h20v2H2v-2z"/></svg>
-كل روابط التواصل والخدمات الخاصة مجمّعة هنا،  
-      <br>حيّاك الله يا مبدع 👑
+      جميع روابط التواصل والخدمات الخاصة مجمّعة هنا.<br> حيّاك الله يا مبدع.
     </div>
 
     <div class="social">
@@ -224,8 +243,8 @@
     </div>
 
     <div class="footer">
-      © <span id="y"></span> جميع الحقوق محفوظة RY7YY
-      <br>تصميم الحقوق بواسطة 𝙳.𝚉𝙷𝚁𝙰𝙽𝙸 
+      © <span id="y"></span> جميع الحقوق محفوظة RY7YY<br>
+      تصميم الحقوق بواسطة 𝙳.𝚉𝙷𝚁𝙰𝙽𝙸 
     </div>
 
   </div>
