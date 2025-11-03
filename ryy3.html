@@ -226,12 +226,12 @@
         <span>سناب شات</span>
       </a>
 
-      <a class="btn btn-store" href="#" onclick="openSite(); return false;">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2C6.486 2 2 6.486 2 12c0 5.512 4.486 10 10 10s10-4.488 10-10c0-5.514-4.486-10-10-10zM4 12c0-4.411 3.589-8 8-8 1.657 0 3.183.507 4.456 1.364L5.364 16.456A7.963 7.963 0 014 12zm8 8c-1.657 0-3.183-.507-4.456-1.364L18.636 7.544A7.963 7.963 0 0120 12c0 4.411-3.589 8-8 8z"/>
-        </svg>
-        <span>موقعنا</span>
-      </a>
+<a class="btn btn-store" href="#" onclick="openSite(); return false;">
+  <svg viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm7.938 9h-3.11a15.913 15.913 0 0 0-1.57-5.513A8.035 8.035 0 0 1 19.938 11zM12 4.062c1.195 1.39 2.145 3.643 2.424 5.938h-4.848c.279-2.295 1.229-4.548 2.424-5.938zM4.062 13h3.11c.22 1.932.911 3.741 1.57 5.513A8.035 8.035 0 0 1 4.062 13zM8.91 13h6.18c-.273 2.327-1.245 4.623-3.09 6.938-1.845-2.315-2.817-4.611-3.09-6.938zm7.358 5.513c.659-1.772 1.35-3.581 1.57-5.513h3.11a8.035 8.035 0 0 1-4.68 5.513zM4.062 11a8.035 8.035 0 0 1 4.68-5.513A15.913 15.913 0 0 0 7.172 11h-3.11z"/>
+  </svg>
+  <span>موقعنا</span>
+</a>
     </div>
 
 <div class="footer">
@@ -247,10 +247,22 @@
   }
 
   function openSite() {
+    const url = "https://devry7yy.org";
     try {
-      window.open("https://devry7yy.org", "_blank");
+      // ✅ المحاولة الأولى: فتح الموقع في نفس الصفحة داخل الـ WKWebView
+      window.location.href = url;
+
+      // ✅ النسخة الاحتياطية: إذا تم منع التبديل الداخلي خلال ثانية واحدة، نحاول فتح سفاري
+      setTimeout(() => {
+        const opened = window.open(url, '_blank');
+        if (!opened || opened.closed || typeof opened.closed === 'undefined') {
+          // ✅ إجبار سفاري الخارجي على الفتح
+          window.location.assign(url);
+        }
+      }, 600);
     } catch (e) {
-      location.href = "https://devry7yy.org";
+      // ✅ في حال أي خطأ، نفتح الرابط مباشرة في سفاري
+      window.location.assign(url);
     }
   }
 </script>
