@@ -14,11 +14,9 @@
   }
 
   :root {
-    --bg: transparent;
-    --card: #14161a;
+    --accent: #ffd400;
     --text: #eaecef;
     --muted: #9aa3b2;
-    --accent: #ffd400;
     --danger: #ff4d4d;
     --x: #000000;
     --telegram: #0088cc;
@@ -36,24 +34,27 @@
   html, body {
     margin: 0;
     padding: 0;
-    background: var(--bg);
+    background: transparent;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    backdrop-filter: blur(20px) brightness(0.6);
+    -webkit-backdrop-filter: blur(20px) brightness(0.6);
   }
 
   .card {
     position: relative;
-    background: var(--card);
+    background: rgba(17, 17, 17, 0.45);
     border: 2px solid var(--accent);
     border-radius: 22px;
-    padding: 32px 20px 28px;
-    box-shadow: 0 8px 32px rgba(0,0,0,.4);
-    backdrop-filter: blur(10px);
+    padding: 32px 20px;
     width: 92%;
     max-width: 460px;
     text-align: center;
+    box-shadow: 0 8px 40px rgba(0,0,0,.5);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     animation: fadeIn 0.7s ease;
   }
 
@@ -62,76 +63,67 @@
     to { opacity: 1; transform: scale(1); }
   }
 
+  /* زر الإغلاق */
+  .close-btn {
+    position: absolute;
+    top: 14px;
+    right: 14px; /* ← غيّرها إلى left لو تبغاه باليسار */
+    background: rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,212,0,.5);
+    color: var(--accent);
+    border-radius: 50%;
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: all .25s ease;
+    backdrop-filter: blur(10px);
+  }
+  .close-btn:hover { background: rgba(255,212,0,0.1); transform: scale(1.12); }
+
+  .close-btn svg {
+    width: 18px; height: 18px;
+    fill: var(--accent);
+  }
+
   .logo {
-    width: 95px;
-    height: 95px;
+    width: 110px;
+    height: 110px;
     border-radius: 50%;
     margin: 0 auto 14px;
     display: block;
     object-fit: cover;
-    box-shadow: 0 6px 18px rgba(0,0,0,.5);
+    box-shadow: 0 6px 18px rgba(0,0,0,.45);
     border: 2px solid rgba(255,212,0,.4);
   }
 
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 10px;
-  }
-
   .title {
-    font-size: 27px;
+    font-size: 26px;
     color: var(--accent);
     text-shadow: 0 2px 8px rgba(0,0,0,.4);
     letter-spacing: 1.3px;
     font-weight: 700;
-  }
-
-  .close-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform .2s ease;
-  }
-
-  .close-btn svg {
-    width: 24px;
-    height: 24px;
-    fill: var(--accent);
-    opacity: 0.8;
-  }
-
-  .close-btn:hover {
-    transform: scale(1.15);
-    opacity: 1;
+    margin: 10px 0 12px;
   }
 
   .subtitle {
     color: var(--muted);
     font-size: 15px;
     line-height: 1.7;
-    margin: 0 auto 16px;
+    margin: 0 auto 18px;
     width: 92%;
   }
 
   .message-box {
-    margin: 14px auto 22px;
-    padding: 16px;
-    background: rgba(255,255,255,.04);
-    border: 1px solid rgba(255,255,255,.07);
+    margin: 10px auto 24px;
+    padding: 16px 16px;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.09);
     border-radius: 16px;
     color: var(--text);
     font-weight: 600;
-    line-height: 1.6;
+    line-height: 1.7;
     box-shadow: inset 0 0 10px rgba(0,0,0,.15), 0 4px 18px rgba(0,0,0,.25);
     font-size: 14.5px;
-    max-width: 400px;
-    margin-top: 10px;
   }
 
   .message-box svg {
@@ -175,10 +167,10 @@
   .btn-store { background: var(--store); color: #fff; }
 
   .footer {
-    margin-top: 20px;
+    margin-top: 18px;
     color: var(--muted);
     font-size: 12px;
-    border-top: 1px dashed rgba(255,255,255,.08);
+    border-top: 1px dashed rgba(255,255,255,.1);
     padding-top: 8px;
     line-height: 1.8;
   }
@@ -187,28 +179,26 @@
 
 <body>
   <div class="card">
-
-    <div class="header">
-      <h1 class="title">𝙳.𝚉𝙷𝚁𝙰𝙽𝙸</h1>
-      <button class="close-btn" onclick="closePage()">
-        <svg viewBox="0 0 24 24"><path d="M18.3 5.71a1 1 0 0 0-1.41 0L12 10.59 7.11 5.7a1 1 0 0 0-1.41 1.41L10.59 12l-4.9 4.89a1 1 0 1 0 1.41 1.42L12 13.41l4.89 4.9a1 1 0 0 0 1.42-1.42L13.41 12l4.89-4.89a1 1 0 0 0 0-1.4z"/></svg>
-      </button>
-    </div>
+    <button class="close-btn" onclick="closePage()">
+      <svg viewBox="0 0 24 24"><path d="M18.3 5.71a1 1 0 0 0-1.41 0L12 10.59 7.11 5.7a1 1 0 0 0-1.41 1.41L10.59 12l-4.9 4.89a1 1 0 1 0 1.41 1.42L12 13.41l4.89 4.9a1 1 0 0 0 1.42-1.42L13.41 12l4.89-4.89a1 1 0 0 0 0-1.4z"/></svg>
+    </button>
 
     <img class="logo" src="https://devry7yy.org/ssa.png" alt="Logo"/>
 
+    <h1 class="title">𝙳.𝚉𝙷𝚁𝙰𝙽𝙸</h1>
+
     <p class="subtitle">
-      تم فتح مميزات التطبيق بواسطة <br><strong style="color:var(--accent);">{ 𝙳.𝚉𝙷𝚁𝙰𝙽𝙸 }</strong>
+      تم فتح مميزات التطبيق بواسطة <br>
+      <strong style="color:var(--accent);">{ 𝙳.𝚉𝙷𝚁𝙰𝙽𝙸 }</strong>
     </p>
 
     <div class="message-box">
       <svg viewBox="0 0 24 24"><path d="M2 3h20v2H2V3zm0 7h14v2H2v-2zm0 7h20v2H2v-2z"/></svg>
-      جميع روابط التواصل والخدمات الخاصة مجمّعة هنا.<br> حيّاك الله يا مبدع.
+      جميع روابط التواصل والخدمات الخاصة مجمّعة هنا.<br>
+      حيّاك الله يا مبدع.
     </div>
 
     <div class="social">
-
-      <!-- X -->
       <a class="btn btn-x" href="https://twitter.com/RY7YY" target="_blank" rel="noopener noreferrer">
         <svg viewBox="0 0 24 24" fill="currentColor">
           <path d="M18.244 2.25h3.308l-7.227 8.26 8.487 11.24H16.17l-5.33-6.977-6.095 6.977H1.435l7.73-8.85L1 2.25h7.08l4.82 6.41 5.344-6.41z"/>
@@ -216,7 +206,6 @@
         <span>اكس</span>
       </a>
 
-      <!-- Telegram -->
       <a class="btn btn-telegram" href="https://t.me/RY7R7" target="_blank" rel="noopener noreferrer">
         <svg viewBox="0 0 24 24" fill="currentColor">
           <path d="M9.036 15.39 8.88 19.4c.36 0 .518-.155.705-.34l1.694-1.642 3.51 2.583c.645.356 1.108.169 1.285-.597l2.326-10.98c.237-1.101-.42-1.532-1.271-1.26L3.9 10.06c-1.08.338-1.063.99-.183 1.252l3.845 1.186 8.93-5.622c.42-.27.8-.12.486.15l-7.942 6.364z"/>
@@ -224,7 +213,6 @@
         <span>تيليجرام</span>
       </a>
 
-      <!-- Snapchat -->
       <a class="btn btn-snapchat" href="https://snapchat.com/t/ZpHaZvmw" target="_blank" rel="noopener noreferrer">
         <svg viewBox="0 0 24 24" fill="#000000">
           <path d="M12 2c3.9 0 6.7 2.873 6.7 6.68 0 1.874-.676 3.017-.676 3.017s.602.51 1.58.845c.367.126.52.564.326.898-.33.57-1.236.93-2.23 1.02-.14.23-.317.5-.53.79-.94 1.28-2.17 2.19-3.7 2.19-.46 0-.93-.06-1.44-.2-.5.14-.96.2-1.42.2-1.53 0-2.77-.92-3.7-2.2-.21-.29-.39-.56-.53-.79-.99-.09-1.9-.45-2.23-1.02-.19-.33-.04-.77.33-.9.98-.33 1.58-.84 1.58-.84S5.98 10.56 5.98 8.68C5.98 4.87 8.79 2 12 2z"/>
@@ -232,21 +220,18 @@
         <span>سناب شات</span>
       </a>
 
-      <!-- موقعنا -->
       <a class="btn btn-store" href="#" onclick="openSite(); return false;">
         <svg viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 2C6.486 2 2 6.486 2 12c0 5.512 4.486 10 10 10s10-4.488 10-10c0-5.514-4.486-10-10-10zM4 12c0-4.411 3.589-8 8-8 1.657 0 3.183.507 4.456 1.364L5.364 16.456A7.963 7.963 0 014 12zm8 8c-1.657 0-3.183-.507-4.456-1.364L18.636 7.544A7.963 7.963 0 0120 12c0 4.411-3.589 8-8 8z"/>
         </svg>
         <span>موقعنا</span>
       </a>
-
     </div>
 
     <div class="footer">
-      © <span id="y"></span> جميع الحقوق محفوظة RY7YY<br>
+      © <span id="y"></span>RY7YY<br>
       تصميم الحقوق بواسطة 𝙳.𝚉𝙷𝚁𝙰𝙽𝙸 
     </div>
-
   </div>
 
 <script>
