@@ -166,14 +166,20 @@
   .btn-snapchat { background: var(--snapchat); color: #000; }
   .btn-store { background: var(--store); color: #fff; }
 
-  .footer {
-    margin-top: 18px;
-    color: var(--muted);
-    font-size: 12px;
-    border-top: 1px dashed rgba(255,255,255,.1);
-    padding-top: 8px;
-    line-height: 1.8;
-  }
+.footer {
+  margin-top: 20px;
+  color: var(--muted);
+  font-size: 12.5px;
+  text-align: center;
+  line-height: 1.8;
+  border-top: 1px dashed rgba(255,255,255,.1);
+  padding-top: 10px;
+  letter-spacing: 0.4px;
+}
+.footer span {
+  color: var(--accent);
+  font-weight: bold;
+}
 </style>
 </head>
 
@@ -228,11 +234,10 @@
       </a>
     </div>
 
-    <div class="footer">
-      © <span id="y"></span>RY7YY<br>
-      تصميم الحقوق بواسطة 𝙳.𝚉𝙷𝚁𝙰𝙽𝙸 
-    </div>
-  </div>
+<div class="footer">
+  RY7YY © <span id="y"></span><br>
+  تصميم الحقوق بواسطة 𝙳.𝚉𝙷𝚁𝙰𝙽𝙸
+</div>
 
 <script>
   document.getElementById('y').textContent = new Date().getFullYear();
