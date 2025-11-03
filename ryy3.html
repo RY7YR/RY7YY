@@ -242,26 +242,62 @@
 <script>
   document.getElementById('y').textContent = new Date().getFullYear();
 
+  // ✅ زر الإغلاق للصفحة الحالية
   function closePage() {
     window.location.href = "ry7://close";
   }
 
+  // ✅ فتح الموقع دائمًا في متصفح سفاري الخارجي
   function openSite() {
     const url = "https://devry7yy.org";
-    try {
-      // ✅ المحاولة الأولى: فتح الموقع في نفس الصفحة داخل الـ WKWebView
-      window.location.href = url;
 
-      // ✅ النسخة الاحتياطية: إذا تم منع التبديل الداخلي خلال ثانية واحدة، نحاول فتح سفاري
-      setTimeout(() => {
-        const opened = window.open(url, '_blank');
-        if (!opened || opened.closed || typeof opened.closed === 'undefined') {
-          // ✅ إجبار سفاري الخارجي على الفتح
-          window.location.assign(url);
-        }
-      }, 600);
+    try {
+      // ✅ فتح سفاري الخارجي مباشرة (افتراضي)
+      const opened = window.open(url, "_system") || window.open(url, "_blank");
+
+      // ✅ في حال تم الفتح داخليًا (داخل WKWebView)
+      if (!opened || opened.closed || typeof opened.closed === "undefined") {
+        // إنشاء زر إغلاق في أعلى الصفحة
+        const closeBtn = document.createElement("button");
+        closeBtn.innerHTML = "✕";
+        closeBtn.style.cssText = `
+          position: fixed;
+          top: 16px;
+          right: 16px;
+          background: rgba(0,0,0,.55);
+          color: #FFD400;
+          border: none;
+          border-radius: 50%;
+          width: 38px;
+          height: 38px;
+          font-size: 18px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 0 10px rgba(0,0,0,.3);
+          cursor: pointer;
+          z-index: 9999;
+        `;
+        closeBtn.onclick = closePage;
+        document.body.appendChild(closeBtn);
+
+        // ✅ عرض الموقع داخل الـ iframe عند الضرورة
+        const iframe = document.createElement("iframe");
+        iframe.src = url;
+        iframe.style.cssText = `
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          border: none;
+          background: #000;
+          z-index: 9998;
+        `;
+        document.body.appendChild(iframe);
+      }
     } catch (e) {
-      // ✅ في حال أي خطأ، نفتح الرابط مباشرة في سفاري
+      // ✅ إذا فشل كل شيء، افتح الرابط في المتصفح الخارجي
       window.location.assign(url);
     }
   }
