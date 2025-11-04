@@ -9,12 +9,14 @@
   <meta property="og:description" content="كل ما يخصني من روابط وتواصل مجمع هنا، حيّاك يا عسل 👑" />
   <meta name="color-scheme" content="light dark" />
 
-  <!-- ✅ أيقونة الموقع وصورة المعاينة -->
+  <!-- ✅ أيقونة الموقع وصور المعاينة بكل المقاسات -->
+  <link rel="icon" type="image/png" sizes="16x16" href="/ssa.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/ssa.png">
   <link rel="icon" type="image/png" sizes="192x192" href="/ssa.png">
-  <link rel="apple-touch-icon" type="image/png" href="/ssa.png">
+  <link rel="apple-touch-icon" href="/ssa.png">
+  <link rel="shortcut icon" href="/ssa.png">
   <meta name="msapplication-TileImage" content="/ssa.png">
-  <meta property="og:image" content="https://devry7yy.org/ssa.png">
+  <meta property="og:image" content="https://devry7yy.org/ssa.png" />
   <meta property="og:image:type" content="image/png" />
   <meta property="og:image:width" content="512" />
   <meta property="og:image:height" content="512" />
@@ -22,7 +24,10 @@
   <meta property="og:url" content="https://devry7yy.org" />
   <meta name="theme-color" content="#0d1117" />
 
-  <!-- ✅ Google Favicon Schema -->
+  <!-- ✅ Web App Manifest (للمعاينة والأيقونة في بحث Google) -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- ✅ كود Schema مثل x7m -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -30,6 +35,7 @@
     "name": "D.ZHRANI",
     "url": "https://devry7yy.org",
     "logo": "https://devry7yy.org/ssa.png",
+    "image": "https://devry7yy.org/ssa.png",
     "sameAs": [
       "https://x.com/ry7yy",
       "https://t.me/RY7DY",
@@ -39,16 +45,17 @@
   }
   </script>
 
-  <!-- Font Awesome -->
+  <!-- ✅ Font Awesome -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <style>
-    @font-face{
+    @font-face {
       font-family:'Thmanyah sans 1.2';
       src:url('Thmanyahsans12-Bold.ttf') format('truetype');
       font-weight:normal;font-style:normal;font-display:swap;
     }
 
-    :root{
+    :root {
       --bg:#0d1117;
       --fg:#ffffff;
       --muted:#94a3b8;
@@ -60,7 +67,6 @@
       --neon:#00f5ff;
     }
 
-    /* ✅ مظهر فاتح */
     :root.light {
       --bg:#ffffff;
       --fg:#0d1117;
@@ -141,7 +147,6 @@
     .chip.apis    { background: #14b8a6; color: #fff; }
     .chip.linux   { background: #f59e0b; color: #000; }
 
-    /* ✅ قسم المشاريع */
     .projects {
       display: grid;
       gap: 18px;
@@ -171,7 +176,6 @@
       margin: 0;
     }
 
-    /* ✅ زر الوضع الليلي / النهاري */
     #themeToggle {
       position: fixed;
       top: 14px;
@@ -192,7 +196,6 @@
     }
     #themeToggle:hover { transform: scale(1.1); }
 
-    /* ✅ زر الرجوع لأعلى الصفحة */
     #toTop {
       position: fixed;
       bottom: 24px;
@@ -216,7 +219,6 @@
   </style>
 </head>
 <body>
-  <!-- ✅ زر تبديل الوضع -->
   <button id="themeToggle"><i class="fas fa-moon"></i></button>
 
   <main>
@@ -228,7 +230,6 @@
           <p class="role">مطور تطبيقات ومواقع إلكترونية</p>
           <p class="intro">كل ما يخصني من روابط وتواصل مجمع هنا، حيّاك يا عسل 👑</p>
 
-          <!-- أيقونات التواصل -->
           <nav class="social">
             <a href="https://x.com/ry7yy" style="background:#000;"><i class="fab fa-x-twitter" style="color:#fff;"></i></a>
             <a href="https://t.me/RY7DY" style="background:#229ED9;"><i class="fab fa-telegram" style="color:#fff;"></i></a>
@@ -238,7 +239,6 @@
 
           <div class="divider"></div>
 
-          <!-- زر تيليقرام -->
           <nav class="link-list">
             <a class="btn" href="https://t.me/RY7YY"><i class="fab fa-telegram"></i><span>للتواصل تيليقرام</span></a>
           </nav>
@@ -253,23 +253,11 @@
             <span class="chip python"><i class="fab fa-python"></i> ‎Python</span>
           </div>
 
-          <!-- ✅ قسم المشاريع -->
           <p class="section-label">مشاريعي</p>
           <div class="projects">
-            <div class="project">
-              <img src="aa.png" alt="مشروع 1" />
-              <p>تطبيق صلاتي وأذكاري</p>
-            </div>
-
-            <div class="project">
-              <img src="Razah.png" alt="مشروع 2" />
-              <p>تطبيق Razah Chat</p>
-            </div>
-
-            <div class="project">
-              <img src="AI.png" alt="مشروع 3" />
-              <p>AI Razah</p>
-            </div>
+            <div class="project"><img src="aa.png" alt="مشروع 1" /><p>تطبيق صلاتي وأذكاري</p></div>
+            <div class="project"><img src="Razah.png" alt="مشروع 2" /><p>تطبيق Razah Chat</p></div>
+            <div class="project"><img src="AI.png" alt="مشروع 3" /><p>AI Razah</p></div>
           </div>
         </div>
       </section>
@@ -278,16 +266,13 @@
     </div>
   </main>
 
-  <!-- ✅ زر الرجوع لأعلى الصفحة -->
   <button id="toTop">↑</button>
 
   <script>
-    // ✅ زر الرجوع لأعلى الصفحة
     const btn = document.getElementById("toTop");
     window.onscroll = () => btn.style.display = window.scrollY > 200 ? 'block' : 'none';
     btn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    // ✅ تبديل الوضع الليلي / النهاري
     const toggle = document.getElementById("themeToggle");
     const root = document.documentElement;
     let lightMode = false;
