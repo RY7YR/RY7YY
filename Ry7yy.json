@@ -187,6 +187,12 @@
       "category": "MBC"
     },
     {
+      "name": "MBC ACTOIN",
+      "url": "http://sportook.space:2000/MBC-ACTION/tracks-v1a1/mono.m3u8",
+      "logo": "https://devry7yy.org/img/0F612822-AEA9-4991-AEBA-2D499CCBCC7D.png",
+      "category": "MBC"
+    },
+    {
       "name": "MBC 2",
       "url": "https://cdn1-europe.mgmlcdn.s-cloudflare.com:25463/xH5gc4mOg8vw4txxz36/15_.m3u8?",
       "logo": "https://devry7yy.org/img/67EA83B3-87FC-4420-BED3-AD63F32A121B.png",
