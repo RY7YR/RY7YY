@@ -157,6 +157,12 @@
       "category": "Shahid"
     },
     {
+      "name": "شاهد افلام",
+      "url": "    https://shls-live-enc.edgenextcdn.net/out/v1/0044dd4b001a466c941ad77b04a574a2/index_2.m3u8",
+      "logo": "https://devry7yy.org/img/A06BD3B9-B28A-48B6-8691-44A8E6FA41CD.png",
+      "category": "Shahid"
+    },
+    {
       "name": "باب الحارة",
       "url": "https://shls-live-enc.edgenextcdn.net/out/v1/948c54279b594944adde578c95f1d7d1/index.m3u8",
       "logo": "https://i.imgur.com/QtlnZbq.png",
@@ -176,7 +182,7 @@
     },
     {
       "name": "MBC 1",
-      "url": "https://d2ow8h651gs7dx.cloudfront.net/out/v1/0965e4d7deae49179172426cbfb3bc5e/index.m3u8",
+      "url": "https://mbc1-enc.edgenextcdn.net/out/v1/0965e4d7deae49179172426cbfb3bc5e/index_7.m3u8",
       "logo": "https://devry7yy.org/img/C6630DD6-2DC8-4242-B800-38FB40DE2BA2.png",
       "category": "MBC"
     },
