@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Razah Plus - حلول برمجية متكاملة</title>
+
+  <!-- خطوط عربية (يمكنك تعديلها لاحقًا) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /*🎨 ألوان رئيسية - عدّلها براحتك */
+      --bg-main: #050816;
+      --bg-soft: #0b1020;
+      --bg-softer: #11172a;
+      --accent: #00e0ff;
+      --accent-strong: #00ff9d;
+      --accent-soft: rgba(0, 224, 255, 0.12);
+      --accent-soft2: rgba(0, 255, 157, 0.12);
+      --text-main: #f8f9ff;
+      --text-muted: #c3c7de;
+      --border: #252b3f;
+      --danger: #ff4d6a;
+      --shadow-accent: 0 0 25px rgba(0, 224, 255, 0.35);
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-pill: 999px;
+      --transition-fast: 0.2s ease;
+      --transition-med: 0.3s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Cairo", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #1b1f3b 0, #050816 40%, #02010a 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* ====== الحاوية العامة ====== */
+    .wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px 16px 80px;
+    }
+
+    /* ====== الهيدر / النافبار ====== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(16px);
+      background: linear-gradient(to bottom, rgba(5, 8, 22, 0.95), rgba(5, 8, 22, 0.8), transparent);
+      border-bottom: 1px solid rgba(37, 43, 63, 0.7);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-logo {
+      width: 38px;
+      height: 38px;
+      border-radius: 14px;
+      background: radial-gradient(circle at 20% 20%, #00e0ff, #00ff9d 50%, #181c3b 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 20px;
+      color: #050816;
+      box-shadow: var(--shadow-accent);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-weight: 800;
+      font-size: 18px;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+    }
+
+    .nav-links a {
+      padding: 6px 11px;
+      border-radius: 999px;
+      color: var(--text-muted);
+      border: 1px solid transparent;
+      transition: var(--transition-fast);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-strong);
+      border-color: rgba(0, 224, 255, 0.45);
+      background: rgba(0, 224, 255, 0.08);
+    }
+
+    .nav-docs {
+      border-color: rgba(0, 224, 255, 0.25);
+      background: rgba(0, 224, 255, 0.04);
+      color: var(--accent);
+    }
+
+    .nav-cart-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 224, 255, 0.4);
+      background: linear-gradient(to left, rgba(0, 224, 255, 0.16), rgba(0, 255, 157, 0.16));
+      cursor: pointer;
+      font-size: 13px;
+      color: #050816;
+      font-weight: 700;
+      box-shadow: var(--shadow-accent);
+      transition: var(--transition-fast);
+    }
+
+    .nav-cart-btn span {
+      background: #050816;
+      color: var(--accent-strong);
+      border-radius: 999px;
+      padding: 1px 7px;
+      font-size: 11px;
+    }
+
+    .nav-cart-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 30px rgba(0, 255, 157, 0.4);
+    }
+
+    .nav-cart-btn:active {
+      transform: translateY(1px) scale(0.98);
+    }
+
+    @media (max-width: 720px) {
+      .nav-inner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+      }
+
+      .nav-links-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .nav-cart-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    /* ====== الهيرو ====== */
+    .hero {
+      margin-top: 16px;
+      padding: 22px 18px;
+      border-radius: 22px;
+      background: radial-gradient(circle at top right, rgba(0,224,255,0.14), transparent 40%),
+                  radial-gradient(circle at bottom left, rgba(0,255,157,0.18), transparent 45%),
+                  linear-gradient(135deg, #050816, #050816, #0b1020);
+      border: 1px solid rgba(0, 224, 255, 0.28);
+      box-shadow: 0 0 50px rgba(0, 0, 0, 0.7);
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+      gap: 24px;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-size: 26px;
+      line-height: 1.4;
+      margin: 0 0 8px;
+      font-weight: 800;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, #00e0ff, #00ff9d);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-sub {
+      margin: 0 0 16px;
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn {
+      border-radius: var(--radius-pill);
+      padding: 9px 16px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: var(--transition-med);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      color: #050816;
+      box-shadow: var(--shadow-accent);
+      border-color: rgba(0, 224, 255, 0.7);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 30px rgba(0, 255, 157, 0.5);
+    }
+
+    .btn-secondary {
+      background: rgba(5, 8, 22, 0.8);
+      border-color: rgba(0, 224, 255, 0.35);
+      color: var(--accent);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(11, 16, 32, 0.9);
+      border-color: rgba(0, 255, 157, 0.45);
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 10px;
+      border-radius: var(--radius-pill);
+      background: rgba(0, 224, 255, 0.08);
+      border: 1px solid rgba(0, 224, 255, 0.3);
+      color: var(--accent);
+      font-size: 11px;
+      margin-bottom: 8px;
+    }
+
+    .hero-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent-strong);
+      box-shadow: 0 0 10px rgba(0, 255, 157, 0.7);
+    }
+
+    .hero-highlight {
+      margin-top: 16px;
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-highlight span {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(17, 23, 42, 0.85);
+      border: 1px solid rgba(37, 43, 63, 0.9);
+    }
+
+    .hero-card {
+      border-radius: 18px;
+      background: radial-gradient(circle at top left, rgba(0,224,255,0.25), transparent 55%),
+                  linear-gradient(145deg, #050816 0%, #050816 30%, #151932 100%);
+      border: 1px solid rgba(0, 224, 255, 0.3);
+      padding: 16px 14px;
+      box-shadow: 0 0 35px rgba(0, 0, 0, 0.85);
+    }
+
+    .hero-card-title {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .hero-card-main {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .hero-card-tag {
+      display: inline-flex;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(0, 224, 255, 0.12);
+      border: 1px solid rgba(0, 224, 255, 0.6);
+      font-size: 11px;
+      margin-bottom: 10px;
+    }
+
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .hero-stat-pill {
+      padding: 5px 9px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(37, 43, 63, 0.9);
+      background: rgba(5, 8, 22, 0.9);
+    }
+
+    @media (max-width: 880px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        padding: 16px 14px;
+      }
+
+      .hero-title {
+        font-size: 22px;
+      }
+    }
+
+    /* ====== الأقسام العامة ====== */
+    section {
+      margin-top: 40px;
+    }
+
+    section h2 {
+      margin: 0 0 6px;
+      font-size: 21px;
+      font-weight: 800;
+    }
+
+    section > p.section-sub {
+      margin: 0 0 16px;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    /* ====== المنتجات ====== */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 16px;
+    }
+
+    .product-card {
+      border-radius: var(--radius-lg);
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      padding: 14px 14px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition-med);
+    }
+
+    .product-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at top, rgba(0,224,255,0.25), transparent 55%);
+      opacity: 0;
+      transition: var(--transition-med);
+      pointer-events: none;
+    }
+
+    .product-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(0, 224, 255, 0.6);
+      box-shadow: var(--shadow-accent);
+    }
+
+    .product-card:hover::before {
+      opacity: 1;
+    }
+
+    .product-name {
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .product-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .product-price {
+      margin-top: 4px;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--accent-strong);
+    }
+
+    .product-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .product-footer {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .badge-soft {
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(11, 16, 32, 0.96);
+      border: 1px solid rgba(37, 43, 63, 0.9);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .btn-cart {
+      padding: 7px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 224, 255, 0.6);
+      background: linear-gradient(135deg, rgba(0, 224, 255, 0.18), rgba(0, 255, 157, 0.18));
+      color: #050816;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition-fast);
+    }
+
+    .btn-cart:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-accent);
+    }
+
+    .btn-cart:active {
+      transform: translateY(1px) scale(0.97);
+    }
+
+    /* ====== الخدمات ====== */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+    }
+
+    .service-card {
+      border-radius: var(--radius-lg);
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      padding: 14px 14px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: var(--transition-med);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(0, 255, 157, 0.22), transparent 55%);
+      opacity: 0;
+      transition: var(--transition-med);
+    }
+
+    .service-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(0, 255, 157, 0.6);
+      box-shadow: 0 0 30px rgba(0, 255, 157, 0.35);
+    }
+
+    .service-card:hover::after {
+      opacity: 1;
+    }
+
+    .service-title {
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .service-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .service-cta-wrap {
+      margin-top: 6px;
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    /* ====== الشروط والأحكام ====== */
+    .terms-box {
+      background: var(--bg-soft);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: 16px 14px;
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    .terms-box h3 {
+      margin: 10px 0 4px;
+      font-size: 15px;
+      color: var(--text-main);
+    }
+
+    .terms-box p {
+      margin: 0 0 6px;
+    }
+
+    /* ====== الوثائق / مركز الدعم ====== */
+    .docs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .docs-col {
+      background: var(--bg-soft);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: 14px 14px 10px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .docs-col h3 {
+      margin: 0 0 6px;
+      font-size: 15px;
+      color: var(--text-main);
+    }
+
+    .docs-col ul {
+      padding-right: 16px;
+      margin: 6px 0 0;
+    }
+
+    .docs-col li {
+      margin-bottom: 4px;
+    }
+
+    /* ====== الفوتر ====== */
+    footer {
+      margin-top: 40px;
+      border-top: 1px solid var(--border);
+      padding-top: 18px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1.3fr);
+      gap: 14px;
+    }
+
+    .footer-title {
+      font-weight: 700;
+      margin-bottom: 4px;
+      font-size: 13px;
+      color: var(--text-main);
+    }
+
+    .footer-links a {
+      display: block;
+      font-size: 12px;
+      margin-bottom: 4px;
+      color: var(--text-muted);
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    .footer-contact div {
+      margin-bottom: 4px;
+    }
+
+    .footer-bottom {
+      margin-top: 10px;
+      font-size: 11px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      opacity: 0.7;
+    }
+
+    @media (max-width: 840px) {
+      .footer-grid {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 620px) {
+      .footer-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* ====== مودال السلة / الدفع ====== */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 6, 20, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 16px;
+    }
+
+    .overlay.hidden {
+      display: none;
+    }
+
+    .modal {
+      width: 100%;
+      max-width: 420px;
+      background: #050816;
+      border-radius: 22px;
+      border: 1px solid rgba(0, 224, 255, 0.5);
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.9);
+      padding: 16px 16px 14px;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .modal-title {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .modal-close {
+      border-radius: 999px;
+      width: 26px;
+      height: 26px;
+      border: 1px solid rgba(37, 43, 63, 0.9);
+      background: #050816;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .modal-body {
+      font-size: 13px;
+      color: var(--text-muted);
+      max-height: 260px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(37, 43, 63, 0.7);
+    }
+
+    .cart-item-name {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .cart-item-price {
+      color: var(--accent-strong);
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .modal-footer {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .cart-total span:last-child {
+      font-weight: 700;
+      color: var(--accent-strong);
+    }
+
+    .btn-full {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .field {
+      margin-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .field label {
+      font-size: 12px;
+    }
+
+    .field input,
+    .field textarea {
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: #050816;
+      padding: 7px 9px;
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: 13px;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(0, 224, 255, 0.4);
+    }
+
+    .modal-note {
+      font-size: 11px;
+      color: var(--text-muted);
+      opacity: 0.85;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-inner">
+      <div class="brand">
+        <div class="brand-logo">R</div>
+        <div class="brand-text">
+          <div class="brand-title">Razah Plus</div>
+          <div class="brand-sub">حلول برمجية متقدمة لأعمالك الرقمية</div>
+        </div>
+      </div>
+      <div class="nav-links-row">
+        <nav class="nav-links">
+          <a href="#products">المنتجات</a>
+          <a href="#services">الخدمات</a>
+          <a href="#docs" class="nav-docs">الوثائق</a>
+          <a href="#terms">الشروط والأحكام</a>
+        </nav>
+      </div>
+      <button class="nav-cart-btn" id="openCartBtn">
+        السلة
+        <span id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="wrapper">
+    <!-- ====== الهيرو ====== -->
+    <section class="hero" id="top">
+      <div>
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          منصّة برمجية من المطوّر السعودي
+        </div>
+        <h1 class="hero-title">
+          حلول برمجية حديثة <span>لتطوير وتسريع أعمالك</span>
+        </h1>
+        <p class="hero-sub">
+          منتجات جاهزة وخدمات مخصصة صُمِّمت لتخدم المطورين وأصحاب المشاريع
+          الرقمية، مع تركيز كامل على الأداء، الأمان، وتجربة المستخدم.
+        </p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" onclick="scrollToSection('products')">
+            استكشف المنتجات
+          </button>
+          <button class="btn btn-secondary" onclick="scrollToSection('services')">
+            اطلب خدمة برمجية
+          </button>
+        </div>
+        <div class="hero-highlight">
+          <span>🛡 دعم مستمر للتحديثات</span>
+          <span>⚡ تكامل جاهز مع واجهات APIs</span>
+          <span>💳 حلول جاهزة للمدفوعات الإلكترونية</span>
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <div class="hero-card-title">لوحة تحكم Razah Plus</div>
+        <div class="hero-card-main">
+          إدارة تراخيص، متاجر تطبيقات، وتكاملات API في مكان واحد.
+        </div>
+        <div class="hero-card-tag">
+          مخصصة لمشاريع المتاجر / أدوات المطوّرين
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat-pill">⏱ تفعيل فوري أوتوماتيكي للأجهزة</div>
+          <div class="hero-stat-pill">🔐 حماية متقدمة ضد العبث والاختراق</div>
+          <div class="hero-stat-pill">📊 لوحات تحكم جاهزة للتحليلات</div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- ====== المنتجات ====== -->
+    <section id="products">
+      <h2>منتجاتنا البرمجية</h2>
+      <p class="section-sub">
+        حزم جاهزة يمكن دمجها مباشرة في مشاريع iOS أو الويب أو لوحات التحكم الخاصة بك.
+      </p>
+
+      <div class="products-grid">
+        <article class="product-card">
+          <div class="product-name">محرك تحليلات المتجر (Store Analytics)</div>
+          <div class="product-desc">
+            نظام تحليلات جاهز لمتاجر التطبيقات يعرض لك عدد التفعيلات، الدول، الأجهزة
+            الأكثر استخدامًا، ونِسَب التجديد – مع لوحة تحكم ويب جاهزة.
+          </div>
+          <div class="product-price">$199</div>
+          <div class="product-meta">ترخيص لمشروع واحد – تحديثات لمدة سنة</div>
+          <div class="product-footer">
+            <span class="badge-soft">مناسب لـ: متاجر التطبيقات / لوحات الأكواد</span>
+            <button
+              class="btn-cart"
+              data-name="محرك تحليلات المتجر"
+              data-price="199"
+            >
+              + أضِف للسلة
+            </button>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-name">نظام تفعيل الأجهزة (Device Activation)</div>
+          <div class="product-desc">
+            باك إند جاهز مع كود ربط iOS (Swift) لإدارة أكواد التفعيل، ربط UUID
+            بالجهاز، وإنهاء التفعيل بشكل فوري مع لوحة تحكم بسيطة.
+          </div>
+          <div class="product-price">$149</div>
+          <div class="product-meta">يتوافق مع: iOS 15 وما فوق / Rootless & TrollStore</div>
+          <div class="product-footer">
+            <span class="badge-soft">خاص بالمطورين ومالكي الأدوات</span>
+            <button
+              class="btn-cart"
+              data-name="نظام تفعيل الأجهزة"
+              data-price="149"
+            >
+              + أضِف للسلة
+            </button>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-name">درع حماية المواقع (Web Shield)</div>
+          <div class="product-desc">
+            خدمة سحابية خفيفة تعمل كطبقة حماية إضافية أمام موقعك أو واجهاتك البرمجية
+            مع فلاتر أساسية للهجمات الشائعة وتتبّع للطلبات المشبوهة.
+          </div>
+          <div class="product-price">$99 / سنويًا</div>
+          <div class="product-meta">يشمل تحديثات وتحسينات مستمرة طوال مدة الاشتراك</div>
+          <div class="product-footer">
+            <span class="badge-soft">مناسبة لـ: صفحات الهبوط / لوحات تحكم</span>
+            <button
+              class="btn-cart"
+              data-name="درع حماية المواقع"
+              data-price="99"
+            >
+              + أضِف للسلة
+            </button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ====== الخدمات ====== -->
+    <section id="services">
+      <h2>خدماتنا التطويرية</h2>
+      <p class="section-sub">
+        فريق تطوير متخصص لتحويل فكرتك إلى منتج حقيقي بأعلى جودة، مع دعم كامل في
+        مرحلة الربط والتشغيل.
+      </p>
+
+      <div class="services-grid">
+        <article class="service-card">
+          <div class="service-title">تطوير مواقع ولوحات تحكم</div>
+          <div class="service-desc">
+            برمجة مواقع ولوحات تحكم احترافية للمتاجر، الأكواد، وإدارة الاشتراكات،
+            مع تصميم واجهات متجاوبة وسريعة.
+          </div>
+          <div class="service-cta-wrap">
+            <button class="btn btn-secondary" onclick="openContact('تطوير مواقع ولوحات تحكم')">
+              اطلب عرض سعر
+            </button>
+          </div>
+        </article>
+
+        <article class="service-card">
+          <div class="service-title">برمجة تطبيقات iOS</div>
+          <div class="service-desc">
+            بناء تطبيقات iPhone و iPad مخصصة، مع ربط كامل بواجهات الدفع، الأكواد،
+            والتفعيل الفوري للأجهزة.
+          </div>
+          <div class="service-cta-wrap">
+            <button class="btn btn-secondary" onclick="openContact('برمجة تطبيقات iOS')">
+              اطلب عرض سعر
+            </button>
+          </div>
+        </article>
+
+        <article class="service-card">
+          <div class="service-title">واجهات برمجية (APIs) مخصّصة</div>
+          <div class="service-desc">
+            تصميم وتنفيذ واجهات APIs خفيفة وسريعة للمتاجر، تفعيل الأجهزة، الربط مع
+            بوابات الدفع، أو أي استخدام خاص لمشروعك.
+          </div>
+          <div class="service-cta-wrap">
+            <button class="btn btn-secondary" onclick="openContact('واجهات برمجية مخصصة')">
+              اطلب عرض سعر
+            </button>
+          </div>
+        </article>
+
+        <article class="service-card">
+          <div class="service-title">استشارات تقنية وبنية تحتية</div>
+          <div class="service-desc">
+            مساعدتك في اختيار أفضل بنية تحتية، توزيع الخدمات بين Cloudflare / VPS /
+            GitHub Pages، مع تنظيم المشروع من الصفر.
+          </div>
+          <div class="service-cta-wrap">
+            <button class="btn btn-secondary" onclick="openContact('استشارات تقنية')">
+              اطلب عرض سعر
+            </button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ====== الشروط والأحكام ====== -->
+    <section id="terms">
+      <h2>الشروط والأحكام</h2>
+      <p class="section-sub">
+        باستخدامك لموقع Razah Plus أو شرائك لأي منتج أو خدمة، فأنت توافق على البنود التالية:
+      </p>
+
+      <div class="terms-box">
+        <h3>1. استخدام الموقع والخدمات</h3>
+        <p>
+          يهدف هذا الموقع إلى عرض منتجات وخدمات برمجية موجهة للمطورين وأصحاب المشاريع.
+          أي استخدام للمحتوى خارج نطاق الترخيص الممنوح للعميل يُعد مخالفة للشروط.
+        </p>
+
+        <h3>2. طبيعة المنتجات الرقمية</h3>
+        <p>
+          جميع المنتجات المقدمة هنا رقمية (أكواد، حزم برمجية، أو خدمات إعداد وتطوير).
+          بعد تسليم المنتج أو تنفيذ الخدمة لا يمكن استرجاع المبلغ، مع التزامنا بتصحيح أي
+          مشكلة تقنية ناتجة عن المنتج نفسه.
+        </p>
+
+        <h3>3. التحديثات والدعم</h3>
+        <p>
+          بعض المنتجات تشمل فترة دعم وتحديثات محددة تُذكر في وصف المنتج. بعد انتهاء
+          الفترة، يمكن طلب تجديد الدعم مقابل رسوم إضافية يتم الاتفاق عليها مسبقًا.
+        </p>
+
+        <h3>4. الملكية الفكرية</h3>
+        <p>
+          يبقى الكود الأساسي والأنظمة التابعة لـ Razah Plus ملكًا للمطور، ما لم يُذكر
+          خلاف ذلك في اتفاق منفصل. يُمنح العميل حق الاستخدام وفق الترخيص المتفق عليه
+          (مثال: مشروع واحد، أو استخدام داخلي فقط).
+        </p>
+
+        <h3>5. بوابات الدفع</h3>
+        <p>
+          تتم معالجة المدفوعات من خلال مزودي خدمة دفع موثوقين. أي بيانات دفع تُرسل
+          مباشرة إلى مزود الخدمة ولا تُخزَّن على خوادمنا.
+        </p>
+
+        <h3>6. القانون الحاكم</h3>
+        <p>
+          تخضع أي معاملات أو تعاقدات تتم عبر Razah Plus لأنظمة المملكة العربية
+          السعودية، وأي نزاع يُحال للجهات المختصة داخل المملكة.
+        </p>
+      </div>
+    </section>
+
+    <!-- ====== مركز الوثائق والدعم ====== -->
+    <section id="docs">
+      <h2>مركز الوثائق والدعم</h2>
+      <p class="section-sub">
+        مجموعة من النقاط السريعة لمساعدتك على البدء في استخدام المنتجات والخدمات.
+      </p>
+
+      <div class="docs-grid">
+        <div class="docs-col">
+          <h3>قسم المنتجات البرمجية</h3>
+          <ul>
+            <li>طريقة تركيب وربط "محرك تحليلات المتجر" مع لوحتك الحالية.</li>
+            <li>خطوات ربط "نظام تفعيل الأجهزة" مع مشروع iOS باستخدام Swift.</li>
+            <li>أفضل ممارسات لإدارة الأكواد والتجديدات السنوية.</li>
+            <li>نصائح لحماية لوحات التحكم والمتاجر من الاستغلال.</li>
+          </ul>
+        </div>
+
+        <div class="docs-col">
+          <h3>قسم الخدمات التطويرية</h3>
+          <ul>
+            <li>ما الذي تحتاج لتجهيزه قبل بدء مشروع تطوير تطبيق جديد.</li>
+            <li>كيف نوزع المهام بين الواجهة الأمامية والخلفية في مشروعك.</li>
+            <li>آلية مراجعة النماذج الأولية والمراحل قبل الإطلاق.</li>
+            <li>سياسة تعديل المتطلبات بعد بدء العمل على المشروع.</li>
+          </ul>
+        </div>
+
+        <div class="docs-col">
+          <h3>الدعم الفني والفوترة</h3>
+          <ul>
+            <li>قنوات التواصل للدعم الفني والاستفسارات.</li>
+            <li>وقت الاستجابة المتوقع لحالات الطوارئ مقابل الطلبات العادية.</li>
+            <li>آلية إصدار الفواتير الإلكترونية وإرسالها للعميل.</li>
+            <li>كيف تطلب تعديلًا أو تطويرًا إضافيًا على منتج سابق.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== الفوتر ====== -->
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <div class="footer-title">Razah Plus</div>
+          <p>
+            شريكك التقني في بناء متاجر التطبيقات، لوحات التحكم، وأنظمة التفعيل والربط
+            البرمجي – مع تركيز على السهولة والأمان.
+          </p>
+          <p>سجل عمل حر (مثال): FL-123456789</p>
+        </div>
+        <div>
+          <div class="footer-title">روابط سريعة</div>
+          <div class="footer-links">
+            <a href="#products">منتجاتنا</a>
+            <a href="#services">الخدمات</a>
+            <a href="#docs">مركز الوثائق</a>
+            <a href="#terms">الشروط والأحكام</a>
+            <a href="#top">العودة للأعلى</a>
+          </div>
+        </div>
+        <div class="footer-contact">
+          <div class="footer-title">تواصل معنا</div>
+          <div>📧 البريد: support@razah-plus.com</div>
+          <div>📱 الجوال: +966500000000</div>
+          <div>💬 يمكن تخصيص قنوات خاصة لعملاء المتجر</div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 Razah Plus. جميع الحقوق محفوظة.</span>
+        <span>تم التصميم والبرمجة بأسلوب يلائم المتاجر والتطبيقات الحديثة.</span>
+      </div>
+    </footer>
+  </main>
+
+  <!-- ====== مودال السلة ====== -->
+  <div class="overlay hidden" id="cartOverlay">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">سلة التسوق</div>
+        <button class="modal-close" id="closeCartBtn">×</button>
+      </div>
+      <div class="modal-body" id="cartItems">
+        لا توجد منتجات مضافة حتى الآن.
+      </div>
+      <div class="modal-footer">
+        <div class="cart-total">
+          <span>المجموع:</span>
+          <span id="cartTotal">$0</span>
+        </div>
+        <button class="btn btn-primary btn-full" id="goCheckoutBtn">
+          إكمال عملية الشراء
+        </button>
+        <div class="modal-note">
+          ملاحظة: هذه واجهة تجريبية فقط. يمكنك ربط زر الدفع مع بوابة الدفع
+          التي تستخدمها (Tap, Stripe, MyFatoorah ...إلخ).
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== مودال الدفع ====== -->
+  <div class="overlay hidden" id="checkoutOverlay">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">إرسال طلب الدفع</div>
+        <button class="modal-close" id="closeCheckoutBtn">×</button>
+      </div>
+      <div class="modal-body">
+        <p>
+          تعبئة البيانات التالية لإرسال طلب الدفع يدويًا (يمكنك لاحقًا ربطها
+          مباشرة مع API الدفع الخاص بك).
+        </p>
+        <div class="field">
+          <label for="fullName">الاسم الكامل</label>
+          <input id="fullName" type="text" placeholder="مثال: ريان الزهراني">
+        </div>
+        <div class="field">
+          <label for="contactInfo">البريد الإلكتروني أو رقم الجوال</label>
+          <input id="contactInfo" type="text" placeholder="مثال: 05xxxxxxxx أو البريد">
+        </div>
+        <div class="field">
+          <label for="notes">ملاحظات إضافية (اختياري)</label>
+          <textarea id="notes" rows="2" placeholder="اذكر أي تفاصيل تود إضافتها"></textarea>
+        </div>
+        <p class="modal-note">
+          عند ربط هذه الواجهة مع الباك إند، يمكنك إرسال بيانات السلة وقيمة
+          المجموع لبوابة الدفع وإرجاع رابط الدفع للعميل.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary btn-full" id="submitCheckoutBtn">
+          إرسال البيانات (محاكاة)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // بيانات السلة
+    const cart = [];
+
+    const cartOverlay = document.getElementById("cartOverlay");
+    const checkoutOverlay = document.getElementById("checkoutOverlay");
+    const openCartBtn = document.getElementById("openCartBtn");
+    const closeCartBtn = document.getElementById("closeCartBtn");
+    const closeCheckoutBtn = document.getElementById("closeCheckoutBtn");
+    const goCheckoutBtn = document.getElementById("goCheckoutBtn");
+    const submitCheckoutBtn = document.getElementById("submitCheckoutBtn");
+    const cartItemsEl = document.getElementById("cartItems");
+    const cartTotalEl = document.getElementById("cartTotal");
+    const cartCountEl = document.getElementById("cartCount");
+
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function openCart() {
+      cartOverlay.classList.remove("hidden");
+    }
+
+    function closeCart() {
+      cartOverlay.classList.add("hidden");
+    }
+
+    function openCheckout() {
+      checkoutOverlay.classList.remove("hidden");
+    }
+
+    function closeCheckout() {
+      checkoutOverlay.classList.add("hidden");
+    }
+
+    function updateCartUI() {
+      if (cart.length === 0) {
+        cartItemsEl.innerHTML = "لا توجد منتجات مضافة حتى الآن.";
+        cartTotalEl.textContent = "$0";
+        cartCountEl.textContent = "0";
+        return;
+      }
+
+      let html = "";
+      let total = 0;
+
+      cart.forEach((item) => {
+        total += item.price;
+        html += `
+          <div class="cart-item">
+            <div>
+              <div class="cart-item-name">${item.name}</div>
+              <div class="cart-item-meta">كمية: ${item.qty}</div>
+            </div>
+            <div class="cart-item-price">$${item.price.toFixed(2)}</div>
+          </div>
+        `;
+      });
+
+      cartItemsEl.innerHTML = html;
+      cartTotalEl.textContent = "$" + total.toFixed(2);
+      cartCountEl.textContent = String(cart.length);
+    }
+
+    function addToCart(name, price) {
+      cart.push({ name, price, qty: 1 });
+      updateCartUI();
+      openCart();
+    }
+
+    document.querySelectorAll(".btn-cart").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const name = btn.getAttribute("data-name");
+        const price = parseFloat(btn.getAttribute("data-price") || "0");
+        addToCart(name, price);
+      });
+    });
+
+    openCartBtn.addEventListener("click", openCart);
+    closeCartBtn.addEventListener("click", closeCart);
+
+    goCheckoutBtn.addEventListener("click", () => {
+      closeCart();
+      openCheckout();
+    });
+
+    closeCheckoutBtn.addEventListener("click", closeCheckout);
+
+    // إغلاق عند الضغط خارج المودال
+    [cartOverlay, checkoutOverlay].forEach((overlay) => {
+      overlay.addEventListener("click", (e) => {
+        if (e.target === overlay) {
+          overlay.classList.add("hidden");
+        }
+      });
+    });
+
+    submitCheckoutBtn.addEventListener("click", () => {
+      const fullName = document.getElementById("fullName").value.trim();
+      const contact = document.getElementById("contactInfo").value.trim();
+      if (!fullName || !contact) {
+        alert("يرجى تعبئة الاسم ووسيلة التواصل قبل المتابعة.");
+        return;
+      }
+
+      alert("تم إرسال البيانات (محاكاة). هنا تربطها مع الباك إند / بوابة الدفع.");
+      closeCheckout();
+    });
+
+    // فتح نموذج التواصل من قسم الخدمات (محاكاة)
+    function openContact(serviceName) {
+      openCheckout();
+      const notes = document.getElementById("notes");
+      if (notes && serviceName) {
+        notes.value = "طلب عرض سعر لخدمة: " + serviceName + "\n\n";
+      }
+    }
+
+    // جعل الدالة متاحة في الـ HTML
+    window.scrollToSection = scrollToSection;
+    window.openContact = openContact;
+  </script>
+</body>
+</html>
